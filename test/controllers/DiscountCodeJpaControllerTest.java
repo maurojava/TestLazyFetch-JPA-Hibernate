@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.hibernate.Hibernate;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -151,14 +152,16 @@ public class DiscountCodeJpaControllerTest {
         assertTrue(7.00 == sconto);
 
         System.out.println("\n\n-------------Prova partendo da discontcode detached:----------");
-
+        
+ //Hibernate.initialize(result.getCustomerList());
         List<Customer> customerListfromdatached = result.getCustomerList();
+    
         String nameclass = customerListfromdatached.getClass().getCanonicalName();
 
         System.out.println("\n------la lista è di classe: " + nameclass);
 
         System.out.println("\n---customerlist= " + customerListfromdatached.size() + " elementi");
-        assertNotNull("la lista di customer è nulla : probabile erore di LazyException", customerListfromdatached);
+        assertNotNull("la lista di customer è nulla : probabile errore di LazyException", customerListfromdatached);
 
     }
 

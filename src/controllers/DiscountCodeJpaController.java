@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import org.hibernate.Hibernate;
 
 /**
  *
@@ -187,7 +188,11 @@ public class DiscountCodeJpaController implements Serializable {
     public DiscountCode findDiscountCode(String id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(DiscountCode.class, id);
+            
+           return em.find(DiscountCode.class, id);
+           
+          // DiscountCode dis=em.find(DiscountCode.class, id);
+          // Hibernate.initialize(dis.getCustomerList());
         } finally {
             em.close();
         }

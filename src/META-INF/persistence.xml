@@ -16,6 +16,17 @@
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="app"/>
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
-    </properties>
+  
+      <!-- le seguenti 2 proprietà consigliate da Xonja.
+     
+       La prima per il lazy loading senza aprire una sessione.
+     
+       La seconda per non generare eccezzione quando chiudo EMF nella classe di test nel metodo tearDownClass() altrimenti si ottiene :
+Problem closing pooled connection
+java.sql.SQLException: Impossibile chiudere una connessione se una transazione è ancora attiva.      -->
+      
+ <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+   <property name="hibernate.connection.autocommit" value="true"/>
+   </properties>
   </persistence-unit>
 </persistence>
